@@ -34,14 +34,47 @@
   }
 
   .cards {
+    position: absolute;
     top: 25%;
     left: 37%;
     border-radius: 10px;
-    position: absolute;
     width: 97px;
     height: 174px;
     transition: all 350ms ease;
     transform: scale(0.6);
+    overflow: hidden;
+    background-size: cover;
+    background-position: center;
+  }
+
+  .selected-cards {
+    position: absolute;
+    top: 25%;
+    left: 37%;
+    border-radius: 10px;
+    width: 97px;
+    height: 174px;
+    transition: all 350ms ease;
+    overflow: hidden;
+    background-size: cover;
+    background-position: center;
+  }
+
+  .selected-cards.left {
+    top: 25%;
+    left: 5%;
+    right: 90%;
+  }
+
+  .selected-cards.center {
+    top: 20%;
+    left: 37%;
+  }
+
+  .selected-cards.right {
+    top: 25%;
+    left: 70%;
+    right: 30%;
   }
   
   .thecard {
@@ -65,6 +98,7 @@
     overflow: hidden;
     background-size: cover;
     background-position: center;
+    background-color: black;
   }
   
   .theback {
