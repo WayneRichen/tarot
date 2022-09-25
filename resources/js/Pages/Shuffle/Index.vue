@@ -6,6 +6,7 @@ import image from '../../../assets/tarot-card.png';
 
 defineProps({
     id: String,
+    tarots: Array,
 });
 </script>
 <template>
@@ -15,25 +16,29 @@ defineProps({
             <div class="selected-cards left">
                 <div class="thecard" id="selected-cards-left">
                     <div class="thefront bg-gray-900 text-yellow-50 text-center py-16">過去</div>
-                    <div class="theback"></div>
+                    <div class="theback" :style="{backgroundImage: 'url(' + tarots[0] + ')'}"></div>
                 </div>
+                <div class="pt-2 w-full text-center text-white opacity-0 transition-all duration-700 ease" id="left-label">過去過去</div>
             </div>
             <div class="selected-cards center">
                 <div class="thecard" id="selected-cards-center">
                     <div class="thefront bg-gray-900 text-yellow-50 text-center py-16">現在</div>
-                    <div class="theback"></div>
+                    <div class="theback" :style="{backgroundImage: 'url(' + tarots[1] + ')'}"></div>
                 </div>
+                <div class="pt-2 w-full text-center text-white opacity-0 transition-all duration-700 ease" id="center-label">過去過去</div>
             </div>
             <div class="selected-cards right">
                 <div class="thecard" id="selected-cards-right">
                     <div class="thefront bg-gray-900 text-yellow-50 text-center py-16">未來</div>
-                    <div class="theback"></div>
+                    <div class="theback" :style="{backgroundImage: 'url(' + tarots[2] + ')'}"></div>
                 </div>
+                <div class="pt-2 w-full text-center text-white opacity-0 transition-all duration-700 ease" id="right-label">過去過去</div>
             </div>
         </div>
         <div class="fade-in">
             <Cards v-for="n in 33"></Cards>
         </div>
+        <Link :href="'/consult/' + id" class="opacity-0" id="consult"></Link>
     </Background>
 </template>
 <script>
@@ -41,6 +46,7 @@ export default {
   mounted() {
     let cards = document.querySelectorAll('.cards');
     let click = 0;
+    let lock = false;
     const setClasses = async () => {
         await sleep(700);
         const classes = ['left', 'active', 'right'];
@@ -97,46 +103,73 @@ export default {
     }
 
     const select = async (e) => {
+        if (lock) return;
+        lock = true;
         let card = e.currentTarget
         card.style.transform = 'translate(0%) rotate(0deg)';
         const left = document.getElementById('selected-cards-left');
         const center = document.getElementById('selected-cards-center');
         const right = document.getElementById('selected-cards-right');
+        const leftLabel = document.getElementById('left-label');
+        const centerLabel = document.getElementById('center-label');
+        const rightLabel = document.getElementById('right-label');
         if (click == 0) {
-            card.className = 'selected-cards left';
+            card.className = 'selecting-cards left';
             card.style.top = null;
         } else if (click == 1) {
-            card.className = 'selected-cards center';
+            card.className = 'selecting-cards center';
             card.style.top = null;
         } else {
-            card.className = 'selected-cards right';
+            card.className = 'selecting-cards right';
             card.style.top = null;
         }
-        await sleep(350);
+        await sleep(700);
         if (click == 0) {
             const leftFront = left.firstChild;
             const leftBack = left.lastChild;
             leftFront.style.backgroundImage = `url('${image}')`;
             leftFront.innerText = '';
-            leftBack.style.backgroundImage = `url('https://mytarotdiary.files.wordpress.com/2012/09/rws_tarot_20_judgement.jpg')`;
             left.style.transform = 'rotateY(180deg)';
+            leftLabel.classList.remove('opacity-0');
         } else if (click == 1) {
             const centerFront = center.firstChild;
             const centerBack = center.lastChild;
             centerFront.style.backgroundImage = `url('${image}')`;
             centerFront.innerText = '';
-            centerBack.style.backgroundImage = `url('https://mytarotdiary.files.wordpress.com/2012/09/rws_tarot_20_judgement.jpg')`;
             center.style.transform = 'rotateY(180deg)';
+            centerLabel.classList.remove('opacity-0');
         } else {
             const rightFront = right.firstChild;
             const rightBack = right.lastChild;
             rightFront.style.backgroundImage = `url('${image}')`;
             rightFront.innerText = '';
-            rightBack.style.backgroundImage = `url('https://mytarotdiary.files.wordpress.com/2012/09/rws_tarot_20_judgement.jpg')`;
             right.style.transform = 'rotateY(180deg)';
+            rightLabel.classList.remove('opacity-0');
         }
         card.style.display = 'none';
+        await sleep(700);
         click++;
+        if (click == 3) hideCards();
+        lock = click == 3 ? true : false;
+    }
+
+    async function hideCards() {
+        await sleep(700);
+        let cards = document.querySelectorAll('.cards');
+        cards.forEach(card => {
+            card.classList.add('opacity-0');
+            card.style.top = '70%';
+        });
+
+        const left = document.querySelector('.selected-cards.left');
+        const center = document.querySelector('.selected-cards.center');
+        const right = document.querySelector('.selected-cards.right');
+        left.classList.add('top');
+        center.classList.add('top');
+        right.classList.add('top');
+        await sleep(700);
+        const next = document.getElementById('consult');
+        next.click();
     }
 
     async function sleep(ms = 0) {

@@ -14,6 +14,13 @@ class ShuffleController extends Controller
 
     public function shuffle($id)
     {
-        return inertia('Shuffle/Index', ['id' => $id]);
+        $tarots = ['https://mytarotdiary.files.wordpress.com/2012/09/rws_tarot_20_judgement.jpg', 'https://mytarotdiary.files.wordpress.com/2012/09/rws_tarot_20_judgement.jpg', 'https://mytarotdiary.files.wordpress.com/2012/09/rws_tarot_20_judgement.jpg'];
+        return inertia('Shuffle/Index', ['id' => $id, 'tarots' => $tarots]);
+    }
+
+    public function consult($id)
+    {
+        $tarots = ['https://mytarotdiary.files.wordpress.com/2012/09/rws_tarot_20_judgement.jpg', 'https://mytarotdiary.files.wordpress.com/2012/09/rws_tarot_20_judgement.jpg', 'https://mytarotdiary.files.wordpress.com/2012/09/rws_tarot_20_judgement.jpg'];
+        return inertia('Shuffle/Consult', ['id' => $id, 'tarots' => $tarots]);
     }
 }

@@ -22,6 +22,7 @@ Route::get('/', function () {
 
 Route::get('/shuffle', [ShuffleController::class, 'index'])->name('shuffle.index');
 Route::get('/shuffle/{id}', [ShuffleController::class, 'shuffle'])->name('shuffle.shuffle');
+Route::get('/consult/{id}', [ShuffleController::class, 'consult'])->name('shuffle.consult');
 
 Route::middleware([
     'auth:sanctum',
