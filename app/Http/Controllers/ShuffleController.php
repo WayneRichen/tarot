@@ -23,4 +23,19 @@ class ShuffleController extends Controller
         $tarots = ['https://mytarotdiary.files.wordpress.com/2012/09/rws_tarot_20_judgement.jpg', 'https://mytarotdiary.files.wordpress.com/2012/09/rws_tarot_20_judgement.jpg', 'https://mytarotdiary.files.wordpress.com/2012/09/rws_tarot_20_judgement.jpg'];
         return inertia('Shuffle/Consult', ['id' => $id, 'tarots' => $tarots]);
     }
+
+    public function consultTeacher(Request $request, $id)
+    {
+        $validated = $request->validate([
+            'question' => 'required|max:255',
+        ]);
+        
+        return redirect('success/' . $id);
+    }
+
+    public function success($id)
+    {
+        $tarots = ['https://mytarotdiary.files.wordpress.com/2012/09/rws_tarot_20_judgement.jpg', 'https://mytarotdiary.files.wordpress.com/2012/09/rws_tarot_20_judgement.jpg', 'https://mytarotdiary.files.wordpress.com/2012/09/rws_tarot_20_judgement.jpg'];
+        return inertia('Shuffle/Success', ['id' => $id, 'tarots' => $tarots, 'question' => 'd']);
+    }
 }

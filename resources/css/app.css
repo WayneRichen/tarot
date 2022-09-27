@@ -29,7 +29,21 @@
       opacity: 0;
     }
     100% {
-      opacity: 100;
+      opacity: 1;
+    }
+  }
+  
+  .fade-out {
+    opacity: 1;
+    animation: fade-out 4s forwards;
+  }
+
+  @keyframes fade-out {
+    75% {
+      opacity: 1;
+    }
+    100% {
+      opacity: 0;
     }
   }
 
@@ -176,5 +190,5 @@
   
   .cards.active {
     z-index: 5;
-  }  
+  }
 }
