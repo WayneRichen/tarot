@@ -25,6 +25,7 @@ Route::get('/shuffle/{id}', [ShuffleController::class, 'shuffle'])->name('shuffl
 Route::get('/consult/{id}', [ShuffleController::class, 'consult'])->name('shuffle.consult');
 Route::post('/consultTeacher/{id}', [ShuffleController::class, 'consultTeacher'])->name('shuffle.consultTeacher');
 Route::get('/success/{id}', [ShuffleController::class, 'success'])->name('shuffle.success');
+Route::get('/result/{id}', [ShuffleController::class, 'result'])->name('shuffle.result');
 
 Route::middleware([
     'auth:sanctum',

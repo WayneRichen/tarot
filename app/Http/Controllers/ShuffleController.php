@@ -38,4 +38,10 @@ class ShuffleController extends Controller
         $tarots = ['https://mytarotdiary.files.wordpress.com/2012/09/rws_tarot_20_judgement.jpg', 'https://mytarotdiary.files.wordpress.com/2012/09/rws_tarot_20_judgement.jpg', 'https://mytarotdiary.files.wordpress.com/2012/09/rws_tarot_20_judgement.jpg'];
         return inertia('Shuffle/Success', ['id' => $id, 'tarots' => $tarots, 'question' => 'd']);
     }
+
+    public function result($id)
+    {
+        $tarots = ['https://mytarotdiary.files.wordpress.com/2012/09/rws_tarot_20_judgement.jpg', 'https://mytarotdiary.files.wordpress.com/2012/09/rws_tarot_20_judgement.jpg', 'https://mytarotdiary.files.wordpress.com/2012/09/rws_tarot_20_judgement.jpg'];
+        return inertia('Shuffle/Result', ['id' => $id, 'tarots' => $tarots, 'question' => '我想知道...', 'reply' => 'Teacher']);
+    }
 }
