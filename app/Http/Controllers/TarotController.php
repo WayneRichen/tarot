@@ -3,8 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Consult;
 
-class ShuffleController extends Controller
+class TarotController extends Controller
 {
     public function index()
     {

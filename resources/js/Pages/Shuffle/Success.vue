@@ -48,10 +48,10 @@ defineProps({
                                 class=" bg-slate-200 rounded-md px-2 text-slate-900 hover:bg-slate-100 active:bg-slate-300"
                                 @click="copy">{{ copied ? '✔︎已複製' : '複製連結'}}</button>
                         </div>
-                        查看老師的解說
+                        <a href='http://127.0.0.1:3000/result/3' target="_blank" class="text-orange-100">查看老師的解說</a>
                     </div>
                 </div>
-                <a href="" onclick="return false;" target="_blank" ref="link" class="mt-2 text-orange-100 font-bold text-4xl">已送達</a>
+                <span target="_blank" class="fade-out mt-2 text-orange-100 font-bold text-4xl cursor-default">已送達</span>>
             </div>
         </div>
     </Background>
@@ -68,9 +68,6 @@ export default {
             this.$refs.myinput.focus();
             document.execCommand('copy');
             this.copied = true;
-            this.$refs.link.href = 'https://tarot.richen.me/result/3ajs';
-            this.$refs.link.text = '查看解說';
-            this.$refs.link.onclick = null;
         }
     }
 }

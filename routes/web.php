@@ -3,7 +3,7 @@
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
-use App\Http\Controllers\ShuffleController;
+use App\Http\Controllers\TarotController;
 
 /*
 |--------------------------------------------------------------------------
@@ -20,12 +20,12 @@ Route::get('/', function () {
     return Inertia::render('Welcome');
 });
 
-Route::get('/shuffle', [ShuffleController::class, 'index'])->name('shuffle.index');
-Route::get('/shuffle/{id}', [ShuffleController::class, 'shuffle'])->name('shuffle.shuffle');
-Route::get('/consult/{id}', [ShuffleController::class, 'consult'])->name('shuffle.consult');
-Route::post('/consultTeacher/{id}', [ShuffleController::class, 'consultTeacher'])->name('shuffle.consultTeacher');
-Route::get('/success/{id}', [ShuffleController::class, 'success'])->name('shuffle.success');
-Route::get('/result/{id}', [ShuffleController::class, 'result'])->name('shuffle.result');
+Route::get('/shuffle', [TarotController::class, 'index'])->name('shuffle.index');
+Route::get('/shuffle/{id}', [TarotController::class, 'shuffle'])->name('shuffle.shuffle');
+Route::get('/consult/{id}', [TarotController::class, 'consult'])->name('shuffle.consult');
+Route::post('/consultTeacher/{id}', [TarotController::class, 'consultTeacher'])->name('shuffle.consultTeacher');
+Route::get('/success/{id}', [TarotController::class, 'success'])->name('shuffle.success');
+Route::get('/result/{id}', [TarotController::class, 'result'])->name('shuffle.result');
 
 Route::middleware([
     'auth:sanctum',

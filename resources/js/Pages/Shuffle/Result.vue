@@ -42,7 +42,7 @@ defineProps({
                     <div class="leading-loose m-2 p-2">
                         {{question}}
                     </div>
-                    <p class="p-2">老師回覆：</p>
+                    <p class="pl-4">老師回覆：</p>
                     <div class="leading-loose border border-white rounded-md m-2 p-2">
                         {{reply}}
                     </div>
