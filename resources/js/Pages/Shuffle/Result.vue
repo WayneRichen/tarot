@@ -31,19 +31,19 @@ defineProps({
             <div class="selected-cards right top">
                 <div class="thecard" id="selected-cards-right" style="transform: rotateY(180deg)">
                     <div class="thefront bg-gray-900 text-yellow-50 text-center py-16">過去</div>
-                    <div class="theback" :style="{backgroundImage: 'url(' + tarots[1]['file_name'] + ')'}"></div>
+                    <div class="theback" :style="{backgroundImage: 'url(' + tarots[2]['file_name'] + ')'}"></div>
                 </div>
                 <div :class="tarots[2]['name'].length > 5 ? 'pt-2 w-full text-sm text-center text-white transition-all duration-700 ease' : 'pt-2 w-full text-center text-white transition-all duration-700 ease'"
                     id="right-label">{{ tarots[2]['name'] }}</div>
             </div>
-            <div class="fade-in consult absolute top-[40%] w-full flex flex-col justify-center">
-                <div class="w-full h-48 bg-slate-900 resize-none rounded-md text-white text-lg">
+            <div class="fade-in consult absolute top-[45%] w-full flex flex-col justify-center">
+                <div class="w-full h-48 bg-slate-900/70 resize-none rounded-md text-white text-lg">
                     <div class="leading-loose m-2 p-2">
                         {{ question }}
                     </div>
-                    <p class="pl-4">老師回覆：</p>
-                    <div class="leading-loose border border-white rounded-md m-2 p-2">
-                        {{ reply ? reply : '老師還沒有回覆，請晚點再回來看唷'}}
+                    <p class="pl-4 text-gray-300">老師回覆：</p>
+                    <div class="leading-loose border border-gray-300 rounded-md m-2 p-2">
+                        {{ reply ? reply : '老師還沒有回覆，請晚點再回來看唷' }}
                     </div>
                 </div>
             </div>

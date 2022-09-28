@@ -9,20 +9,24 @@ import image from '../../assets/tarot-card.png';
     <Head title="Tarot" />
     <Background>
         <img :src="witch" class="mt-2">
-        <Link :href="route('shuffle.index')"
-            class="start-button absolute top-96 inset-x-6 origin-center text-center text-orange-100 font-bold text-4xl"
-            v-on:click="clicked"
-            disabled>
-        <h1 class="start-button">開始</h1>
-        </Link>
+        <form @submit.prevent="start()">
+            <button type="submit" ref="startButton"
+                class="start-button absolute top-96 inset-x-6 origin-center text-center mt-2 text-orange-100 font-bold text-4xl"
+                :disabled="form.processing">開始</button>
+        </form>
     </Background>
 </template>
 <script>
+import { useForm } from '@inertiajs/inertia-vue3';
+let form = useForm();
 export default {
     methods: {
-        clicked(event) {
-            event.target.innerText = '載入中...';
-        }
+        start() {
+            this.$refs.startButton.innerHTML = '載入中...';
+            form.get('/shuffle', {
+                preserveState: false,
+            });
+        },
     },
     mounted() {
         const card = new Image();

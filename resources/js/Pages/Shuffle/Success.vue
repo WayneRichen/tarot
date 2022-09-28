@@ -33,13 +33,13 @@ defineProps({
                 </div>
                 <div :class="tarots[2]['name'].length > 5 ? 'pt-2 w-full text-sm text-center text-white transition-all duration-700 ease' : 'pt-2 w-full text-center text-white transition-all duration-700 ease'" id="right-label">{{ tarots[2]['name'] }}</div>
             </div>
-            <div class="fade-in consult absolute top-[40%] w-full flex flex-col justify-center text-center">
-                <div class="w-full h-48 bg-slate-900 resize-none rounded-md text-white text-lg flex items-center">
-                    <div class="h-fit leading-loose">
+            <div class="fade-in consult absolute top-[45%] w-full flex flex-col justify-center text-center">
+                <div class="w-full h-48 bg-slate-900/70 resize-none rounded-md text-white text-lg flex items-center">
+                    <div class="mx-auto h-fit leading-loose">
                         已經收到您的諮詢<br>
                         老師會盡快回覆 您可以到<br>
                         <div class="border-indigo-900 border w-fit rounded-md mx-auto">
-                            <input class="ml-2 bg-slate-900 pr-2" size="28" v-on:focus="$event.target.select()"
+                            <input class="ml-2 bg-slate-900 pr-2" size="26" v-on:focus="$event.target.select()"
                                 ref="myinput" readonly :value=" url " />
                             <button
                                 class=" bg-slate-200 rounded-md px-2 text-sm py-2 text-slate-900 hover:bg-slate-100 active:bg-slate-300"

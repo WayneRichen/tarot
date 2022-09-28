@@ -35,9 +35,9 @@ defineProps({
                 <div :class="tarots[2]['name'].length > 5 ? 'pt-2 w-full text-sm text-center text-white transition-all duration-700 ease' : 'pt-2 w-full text-center text-white transition-all duration-700 ease'"
                     id="right-label">{{ tarots[2]['name'] }}</div>
             </div>
-            <form class="fade-in consult absolute top-[40%] w-full flex flex-col justify-center"
+            <form class="fade-in consult absolute top-[45%] w-full flex flex-col justify-center"
                 @submit.prevent="submit(id)">
-                <textarea class="w-full h-48 bg-slate-900 resize-none rounded-md text-white text-lg"
+                <textarea class="w-full h-48 bg-slate-900/70 resize-none rounded-md text-white text-lg"
                     style="-webkit-box-shadow: none; -moz-box-shadow: none;" required placeholder="對於這次抽牌結果你想問老師的問題"
                     v-model="form.question"></textarea>
                 <div v-if="form.errors.question" v-text="form.errors.question" class="text-purple-200"></div>
