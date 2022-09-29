@@ -29,8 +29,10 @@ class TarotController extends Controller
                 'reversed' => $reversed ? true : false,
             ];
         }
+        $ip = request()->ip();
+        $user_agent = request()->server('HTTP_USER_AGENT');
 
-        $consult = Consult::create(['cards' => json_encode($shuffleResult, JSON_UNESCAPED_UNICODE)]);
+        $consult = Consult::create(['cards' => json_encode($shuffleResult, JSON_UNESCAPED_UNICODE), 'ip' => $ip, 'user_agent' => $user_agent]);
         Cache::put($consult->hash, $shuffleResult, 3600);
 
         return redirect('shuffle/' . $consult->hash);

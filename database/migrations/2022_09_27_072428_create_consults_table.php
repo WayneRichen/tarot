@@ -18,6 +18,8 @@ return new class extends Migration
             $table->json('cards');
             $table->text('question')->nullable();
             $table->text('reply')->nullable();
+            $table->ipAddress('ip');
+            $table->string('user_agent', 200);
             $table->dateTime('created_at', $precision = 0);
             $table->dateTime('updated_at', $precision = 0);
             $table->dateTime('deleted_at', $precision = 0)->nullable();
