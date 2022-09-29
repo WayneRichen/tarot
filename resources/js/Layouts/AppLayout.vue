@@ -50,7 +50,10 @@ const logout = () => {
                             <!-- Navigation Links -->
                             <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                                 <NavLink :href="route('dashboard')" :active="route().current('dashboard')">
-                                    Dashboard
+                                    最新諮詢
+                                </NavLink>
+                                <NavLink :href="route('dashboard.consult.index')" :active="route().current('dashboard.consult.index')">
+                                    所有抽牌結果
                                 </NavLink>
                             </div>
                         </div>
