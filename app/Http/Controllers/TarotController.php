@@ -31,17 +31,21 @@ class TarotController extends Controller
         }
 
         $consult = Consult::create(['cards' => json_encode($shuffleResult, JSON_UNESCAPED_UNICODE)]);
+        Cache::put($consult->hash, $shuffleResult, 3600);
 
         return redirect('shuffle/' . $consult->hash);
     }
 
     public function shuffle($hash)
     {
-        $consult = Consult::byHashOrFail($hash);
-        $cards = json_decode($consult->cards);
+        $cards = Cache::get($hash);
+        if (!$cards) {
+            return redirect('/');
+        }
+
         foreach ($cards as $index => $card) {
-            $url = $card->reversed ? request()->schemeAndHttpHost() . '/reversed/' . $card->file_name : request()->schemeAndHttpHost() . '/tarot/' . $card->file_name ;
-            $cards[$index]->file_name = $url;
+            $url = $card['reversed'] ? request()->schemeAndHttpHost() . '/reversed/' . $card['file_name'] : request()->schemeAndHttpHost() . '/tarot/' . $card['file_name'] ;
+            $cards[$index]['file_name'] = $url;
         }
 
         return inertia('Shuffle/Index', ['id' => $hash, 'tarots' => $cards]);
@@ -49,11 +53,14 @@ class TarotController extends Controller
 
     public function consult($hash)
     {
-        $consult = Consult::byHashOrFail($hash);
-        $cards = json_decode($consult->cards);
+        $cards = Cache::get($hash);
+        if (!$cards) {
+            return redirect('/');
+        }
+
         foreach ($cards as $index => $card) {
-            $url = $card->reversed ? request()->schemeAndHttpHost() . '/reversed/' . $card->file_name : request()->schemeAndHttpHost() . '/tarot/' . $card->file_name ;
-            $cards[$index]->file_name = $url;
+            $url = $card['reversed'] ? request()->schemeAndHttpHost() . '/reversed/' . $card['file_name'] : request()->schemeAndHttpHost() . '/tarot/' . $card['file_name'] ;
+            $cards[$index]['file_name'] = $url;
         }
 
         return inertia('Shuffle/Consult', ['id' => $hash, 'tarots' => $cards]);
@@ -74,11 +81,14 @@ class TarotController extends Controller
 
     public function success($hash)
     {
-        $consult = Consult::byHashOrFail($hash);
-        $cards = json_decode($consult->cards);
+        $cards = Cache::get($hash);
+        if (!$cards) {
+            return redirect('/');
+        }
+
         foreach ($cards as $index => $card) {
-            $url = $card->reversed ? request()->schemeAndHttpHost() . '/reversed/' . $card->file_name : request()->schemeAndHttpHost() . '/tarot/' . $card->file_name ;
-            $cards[$index]->file_name = $url;
+            $url = $card['reversed'] ? request()->schemeAndHttpHost() . '/reversed/' . $card['file_name'] : request()->schemeAndHttpHost() . '/tarot/' . $card['file_name'] ;
+            $cards[$index]['file_name'] = $url;
         }
 
         return inertia('Shuffle/Success', ['id' => $hash, 'tarots' => $cards, 'url' => route('shuffle.result', $hash)]);
