@@ -13,5 +13,5 @@ class Consult extends Model
     use HasFactory;
     use SoftDeletes;
 
-    protected $fillable = ['cards', 'question', 'answer', 'ip', 'user_agent'];
+    protected $fillable = ['cards', 'question', 'reply', 'ip', 'device', 'os', 'browser'];
 }

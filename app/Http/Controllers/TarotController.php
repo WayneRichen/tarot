@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Consult;
 use App\Models\Tarot;
 use Illuminate\Support\Facades\Cache;
+use Jenssegers\Agent\Agent;
 
 class TarotController extends Controller
 {
@@ -30,9 +31,14 @@ class TarotController extends Controller
             ];
         }
         $ip = request()->ip();
-        $user_agent = request()->server('HTTP_USER_AGENT');
+        $agent = new Agent;
+        $device = $agent->device();
+        $platform = $agent->platform();
+        $platform_version = $agent->version($platform);
+        $browser = $agent->browser();
+        $browser_version = $agent->version($browser);
 
-        $consult = Consult::create(['cards' => json_encode($shuffleResult, JSON_UNESCAPED_UNICODE), 'ip' => $ip, 'user_agent' => $user_agent]);
+        $consult = Consult::create(['cards' => json_encode($shuffleResult, JSON_UNESCAPED_UNICODE), 'ip' => $ip, 'device' => $device, 'os' => $platform . ' ' . $platform_version, 'browser' => $browser . ' ' . $browser_version]);
         Cache::put($consult->hash, $shuffleResult, 3600);
 
         return redirect('shuffle/' . $consult->hash);

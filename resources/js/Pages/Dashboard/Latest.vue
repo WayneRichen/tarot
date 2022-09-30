@@ -17,13 +17,13 @@ defineProps({
 
         <div class="py-12">
             <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-                <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg">
-
-                    <ConsultTable :consults=consults />
+                <div  class="bg-white overflow-hidden shadow-xl sm:rounded-lg">
+                    
+                    <ConsultTable v-if="consults.data.length" :consults=consults />
+                    <p v-else class="m-2 text-gray-700">還沒有最新的諮詢</p>
 
                 </div>
-                <Pagination :links="consults.links" />
-
+                <Pagination v-if="consults.data.length"  :links="consults.links" />
             </div>
         </div>
     </AppLayout>

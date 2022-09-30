@@ -69,9 +69,17 @@ class ConsultController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function view($id)
     {
-        //
+        $consult = Consult::find($id);
+        $cards = json_decode($consult->cards);
+        foreach ($cards as $index => $card) {
+            $url = $card->reversed ? request()->schemeAndHttpHost() . '/reversed/' . $card->file_name : request()->schemeAndHttpHost() . '/tarot/' . $card->file_name ;
+            $cards[$index]->file_name = $url;
+        }
+        $consult->cards = $cards;
+
+        return inertia('Dashboard/View', ['consult' => $consult]);
     }
 
     /**
@@ -94,7 +102,9 @@ class ConsultController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $consult = Consult::find($id);
+        $consult->reply = $request->reply;
+        $consult->save();
     }
 
     /**
