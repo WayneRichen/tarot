@@ -48,7 +48,7 @@ defineProps({
                         <a :href='url' target="_blank" class="text-orange-100 font-bold underline hover:no-underline active:no-underline">查看老師的解說</a>
                     </div>
                 </div>
-                <span target="_blank" class="fade-out mt-2 text-orange-100 font-bold text-4xl cursor-default">已送達</span>>
+                <span class="fade-out mt-2 font-bold text-4xl bg-clip-text text-transparent bg-gradient-to-t from-orange-50 to-orange-200">已送達</span>>
             </div>
         </div>
     </Background>
