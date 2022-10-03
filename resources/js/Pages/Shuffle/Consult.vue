@@ -41,7 +41,7 @@ defineProps({
                     style="-webkit-box-shadow: none; -moz-box-shadow: none;" required placeholder="對於這次抽牌結果你想問老師的問題"
                     v-model="form.question"></textarea>
                 <div v-if="form.errors.question" v-text="form.errors.question" class="text-purple-200"></div>
-                <button type="submit" class="mt-2 font-bold text-4xl bg-clip-text text-transparent bg-gradient-to-t from-orange-50 to-orange-200 hover:from-orange-200 hover:to-orange-50"
+                <button type="submit" class="mt-2 text-orange-100 font-bold text-4xl"
                     :disabled="form.processing">諮詢老師</button>
             </form>
         </div>
