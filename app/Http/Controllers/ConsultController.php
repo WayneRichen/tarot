@@ -22,6 +22,7 @@ class ConsultController extends Controller
                 $cards[$cardIndex]->file_name = $url;
             }
             $consults[$index]->cards = $cards;
+            $consults[$index]->times_ago = time_elapsed_string($consult->created_at);
         }
 
         return inertia('Dashboard/Consult', ['consults' => $consults]);
@@ -37,6 +38,7 @@ class ConsultController extends Controller
                 $cards[$cardIndex]->file_name = $url;
             }
             $consults[$index]->cards = $cards;
+            $consults[$index]->times_ago = time_elapsed_string($consult->created_at);
         }
 
         return inertia('Dashboard/Latest', ['consults' => $consults]);
@@ -78,6 +80,8 @@ class ConsultController extends Controller
             $cards[$index]->file_name = $url;
         }
         $consult->cards = $cards;
+        $consult->created = $consult->created_at->format('Y-m-d H:i:s');
+        $consult->replyed = $consult->updated_at->format('Y-m-d H:i:s');
 
         return inertia('Dashboard/View', ['consult' => $consult]);
     }

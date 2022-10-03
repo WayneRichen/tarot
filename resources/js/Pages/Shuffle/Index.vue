@@ -18,7 +18,7 @@ defineProps({
                     <div class="thefront bg-gray-900 text-yellow-50 text-center py-16">過去</div>
                     <div class="theback" :style="{backgroundImage: 'url(' + tarots[0]['file_name'] + ')'}"></div>
                 </div>
-                <div :class="tarots[0]['name'].length > 5 ? 'pt-2 w-full text-sm text-center text-white opacity-0 transition-all duration-700 ease' : 'pt-2 w-full text-center text-white opacity-0 transition-all duration-700 ease' "
+                <div :class="tarots[0]['name'].length > 5 ? 'pt-2 w-full text-sm text-center text-yellow-50 opacity-0 transition-all duration-700 ease' : 'pt-2 w-full text-center text-yellow-50 opacity-0 transition-all duration-700 ease' "
                     id="left-label">{{ tarots[0]['name'] }}</div>
             </div>
             <div class="selected-cards center">
@@ -26,7 +26,7 @@ defineProps({
                     <div class="thefront bg-gray-900 text-yellow-50 text-center py-16">現在</div>
                     <div class="theback" :style="{backgroundImage: 'url(' + tarots[1]['file_name'] + ')'}"></div>
                 </div>
-                <div :class="tarots[1]['name'].length > 5 ? 'pt-2 w-full text-sm text-center text-white opacity-0 transition-all duration-700 ease' : 'pt-2 w-full text-center text-white opacity-0 transition-all duration-700 ease' "
+                <div :class="tarots[1]['name'].length > 5 ? 'pt-2 w-full text-sm text-center text-yellow-50 opacity-0 transition-all duration-700 ease' : 'pt-2 w-full text-center text-yellow-50 opacity-0 transition-all duration-700 ease' "
                     id="center-label">{{ tarots[1]['name'] }}</div>
             </div>
             <div class="selected-cards right">
@@ -34,7 +34,7 @@ defineProps({
                     <div class="thefront bg-gray-900 text-yellow-50 text-center py-16">未來</div>
                     <div class="theback" :style="{backgroundImage: 'url(' + tarots[2]['file_name'] + ')'}"></div>
                 </div>
-                <div :class="tarots[2]['name'].length > 5 ? 'pt-2 w-full text-sm text-center text-white opacity-0 transition-all duration-700 ease' : 'pt-2 w-full text-center text-white opacity-0 transition-all duration-700 ease' "
+                <div :class="tarots[2]['name'].length > 5 ? 'pt-2 w-full text-sm text-center text-yellow-50 opacity-0 transition-all duration-700 ease' : 'pt-2 w-full text-center text-yellow-50 opacity-0 transition-all duration-700 ease' "
                     id="right-label">{{ tarots[2]['name'] }}</div>
             </div>
         </div>

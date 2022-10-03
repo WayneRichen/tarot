@@ -7,7 +7,7 @@ defineProps({
 </script>
 <template>
     <div class="overflow-x-auto relative shadow-md sm:rounded-lg">
-        <table class="w-full text-left text-gray-500 table-fixed">
+        <table class="w-full text-left text-gray-500 overflow-x-scroll">
             <thead class="text-xs text-gray-700 uppercase bg-gray-50">
                 <tr>
                     <th scope="col" class="py-3 px-6 w-[30%]">
@@ -19,7 +19,10 @@ defineProps({
                     <th scope="col" class="py-3 px-6">
                         老師回覆
                     </th>
-                    <th scope="col" class="py-3 px-6 w-[10%]">
+                    <th scope="col" class="py-3 px-6">
+                        諮詢時間
+                    </th>
+                    <th scope="col" class="py-3 px-6 w-[150px]">
                         操作
                     </th>
                 </tr>
@@ -35,11 +38,14 @@ defineProps({
                         </div>
                     </th>
                     <td class="py-4 px-6" v-text="consult.question ? consult.question : '這個人沒有填寫諮詢內容'"
-                        :class="consult.question ? 'text-gray-800' : 'text-gray-500'"></td>
-                    <td class="py-4 px-6 text-gray-900">
+                        :class="consult.question ? 'text-gray-700' : 'text-gray-500'"></td>
+                    <td class="py-4 px-6 text-gray-700">
                         {{ consult.reply }}
                     </td>
-                    <td class="py-4 px-6">
+                    <td class="py-4 px-6 text-gray-700">
+                        {{ consult.times_ago }}
+                    </td>
+                    <td class="py-4 px-6 w-[150px]">
                         <Link :href="route('dashboard.consult.view', consult.id)"
                             class="mx-1 font-medium text-blue-600 hover:underline">查看</Link>
                         <button v-on:click="deleteConsult(consult.id)"
