@@ -37,4 +37,5 @@ Route::middleware([
     Route::get('/dashboard/consult', [ConsultController::class, 'index'])->name('dashboard.consult.index');
     Route::get('/dashboard/consult/{id}', [ConsultController::class, 'view'])->name('dashboard.consult.view');
     Route::post('/dashboard/consult/update/{id}', [ConsultController::class, 'update'])->name('dashboard.consult.update');
+    Route::delete('/dashboard/consult/delete/{id}', [ConsultController::class, 'delete'])->name('dashboard.consult.delete');
 });

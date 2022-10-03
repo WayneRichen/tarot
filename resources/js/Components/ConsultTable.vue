@@ -1,5 +1,6 @@
 <script setup>
 import { Link } from '@inertiajs/inertia-vue3';
+import { Inertia } from '@inertiajs/inertia'
 defineProps({
     consults: Object,
 });
@@ -40,10 +41,17 @@ defineProps({
                     </td>
                     <td class="py-4 px-6">
                         <Link :href="route('dashboard.consult.view', consult.id)" class="mx-1 font-medium text-blue-600 hover:underline">查看</Link>
-                        <Link href="#" class="font-medium text-red-600 hover:underline">刪除</Link>
+                        <button v-on:click="deleteConsult(consult.id)" class="font-medium text-red-600 hover:underline">刪除</button>
                     </td>
                 </tr>
             </tbody>
         </table>
     </div>
 </template>
+<script>
+function deleteConsult(id) {
+    Inertia.delete('/dashboard/consult/delete/' + id, {
+        preserveScroll: true,
+    });
+}
+</script>
