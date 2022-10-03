@@ -40,8 +40,10 @@ defineProps({
                         {{ consult.reply }}
                     </td>
                     <td class="py-4 px-6">
-                        <Link :href="route('dashboard.consult.view', consult.id)" class="mx-1 font-medium text-blue-600 hover:underline">查看</Link>
-                        <button v-on:click="deleteConsult(consult.id)" class="font-medium text-red-600 hover:underline">刪除</button>
+                        <Link :href="route('dashboard.consult.view', consult.id)"
+                            class="mx-1 font-medium text-blue-600 hover:underline">查看</Link>
+                        <button v-on:click="deleteConsult(consult.id)"
+                            class="font-medium text-red-600 hover:underline">刪除</button>
                     </td>
                 </tr>
             </tbody>
@@ -50,8 +52,10 @@ defineProps({
 </template>
 <script>
 function deleteConsult(id) {
-    Inertia.delete('/dashboard/consult/delete/' + id, {
-        preserveScroll: true,
-    });
+    if (confirm('確定要刪除嗎？刪除後使用者將看不到抽卡紀錄及老師回覆')) {
+        Inertia.delete('/dashboard/consult/delete/' + id, {
+            preserveScroll: true,
+        });
+    }
 }
 </script>
